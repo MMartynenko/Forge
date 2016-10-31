@@ -1,0 +1,108 @@
+body{
+    font-family: Roboto, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+    color: #353535;
+    background-image: url(white.png);
+
+
+    height: auto;
+    min-height: 800px;
+    width: 800px;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-bottom: 30px;
+    margin-left: auto;
+    border: thin solid lightgray;
+}
+
+#rootID {
+    font-size: 18px;
+    font-weight: lighter;
+    padding: 60px 60px 60px 80px;
+    min-height: 680px;
+    height: auto;
+    width: 660px;
+    background-color: #F8F8F8;
+    left: auto;
+    right: auto;
+
+}
+
+#wide_rootID {
+    font-size: 18px;
+    font-weight: lighter;
+    padding: 60px 60px 60px 80px;
+    min-height: 680px;
+    height: auto;
+    width: 820px;
+    background-color: #F8F8F8;
+    left: auto;
+    right: auto;
+
+}
+
+#headerText{
+    font-size: 36px;
+    padding-left:30px;
+
+}
+
+.textfield{
+    padding-left:4px;
+    border-radius: 2px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgray;
+    width: 160px;
+    height: 22px;
+    margin: 5px;
+}
+
+.refreshbutton{
+//height: 35px;
+//width: 166px;
+    padding: 7px 10px 7px 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkgray;
+    color: #4e4e4e;
+
+    border-radius: 2px;
+
+    background-color: #c3c3c3;
+    //background-image: -webkit-linear-gradient(top, #d9d9d9, #c3c3c3);
+
+    font-family: Roboto, Roboto, Helvetica, Arial, sans-serif;
+//font-family: arial, sans-serif;
+    font-size: 16px;;
+
+    font-weight: 500;
+}
+
+.orderstable, .infotable{
+    border-collapse: collapse;
+}
+
+.orderstable td{
+    //border: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+
+    border-collapse: collapse;
+    padding: 7px 10px 7px 10px;
+    text-align: center;
+}
+
+.infotable td{
+    //border: 1px solid lightgray;
+    border-collapse: collapse;
+    padding: 7px;
+}
+
+.comboboxInTable{
+    border-width: 1px;
+    border-color: lightgray;
+    padding: 4px;
+    background-color: transparent;
+}

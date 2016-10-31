@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    #{orders.resetMsg()}
+    <title>Заказы</title>
+</h:head>
+<h:body>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <div id="rootID">
+        <h:form id="tableForm">
+            <div id="headerText">Заказы на меч</div>
+            <h:link value="На Главную" outcome="index" /><br/>
+            <p>
+
+
+                <h:dataTable styleClass="orderstable" value="#{orders.orders}" var="orderInfo">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        #{orderInfo.ID}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Имя</f:facet>
+                        #{orderInfo.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Дата</f:facet>
+                        #{orderInfo.date}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Статус</f:facet>
+                        #{orderInfo.status}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Выбрать</f:facet>
+                        <h:commandButton styleClass="refreshbutton displayOrder"
+                                         style="border-width: 1px;
+                                                border-color: lightgrey;
+                                                background-color: transparent;
+                                                background-image: none;"
+                                         value="ПОСМОТРЕТЬ"
+                                         action="#{orders.displayOrder}">
+                            <f:setPropertyActionListener
+                                    target="#{orders.chosenOrder}" value="#{orderInfo}" />
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <h:commandButton styleClass="refreshbutton refresh" value="ОБНОВИТЬ" action="#{orders.refresh}"/>
+            </p>
+        </h:form>
+        <br/>
+        <h:form rendered="#{orders.showOrderInfo}" id="orderInfoForm">
+            <div id="orderHeaderText">Информация о заказе</div>
+            <p>
+            <table class="infotable">
+                <tr>
+                    <td><h:outputText value="Имя:   " /></td>
+                    <td><h:outputText value="#{orders.orderName}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="E-mail " /></td>
+                    <td><h:outputText value="#{orders.orderMail}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Качество клинка " /></td>
+                    <td><h:outputText value="#{orders.orderQuality}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Длина клинка " /></td>
+                    <td><h:outputText value="#{orders.orderLength}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Гарда " /></td>
+                    <td><h:outputText value="#{orders.guard}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Рукоять " /></td>
+                    <td><h:outputText value="#{orders.handle}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Оплётка рукояти " /></td>
+                    <td><h:outputText value="#{orders.braiding}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Гравировка " /></td>
+                    <td><h:outputText value="#{orders.engraving}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Навершие " /></td>
+                    <td><h:outputText value="#{orders.header}" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Ножны " /></td>
+                    <td><h:outputText value="#{orders.scabbard}" /></td>
+                </tr>
+            </table>
+            <br/>
+
+            </p>
+
+        </h:form>
+
+
+
+        <h:form rendered="#{orders.showOrderInfo}" id="orderDetailForm">
+
+            <p>
+                <h:outputText value="Статус " />
+                <h:selectOneMenu id="status"
+                        styleClass="comboboxInTable status"
+                        style="margin: 0px 15px 0px 15px;"
+                        value="#{orders.orderStatus}">
+                    <f:selectItem itemValue="Заказ принят" itemLabel="Заказ принят" />
+                    <f:selectItem itemValue="Изготовление металла" itemLabel="Изготовление металла" />
+                    <f:selectItem itemValue="Ковка" itemLabel="Ковка" />
+                    <f:selectItem itemValue="Полировка" itemLabel="Полировка" />
+                    <f:selectItem itemValue="Добавление аксессуаров" itemLabel="Добавление аксессуаров" />
+                    <f:selectItem itemValue="Испытание меча" itemLabel="Испытание меча" />
+                    <f:selectItem itemValue="Меч готов" itemLabel="Меч готов" />
+                </h:selectOneMenu>
+                <h:commandButton styleClass="refreshbutton changeStatus" style="font-size: 12px; padding: 5px 8px 5px 8px;" value="ПРИМЕНИТЬ" action="#{orders.changeOrderStatus}"/>
+            </p>
+
+            <br/>
+
+        <p>
+            <h:outputText value="Заказать металл, кг: " />
+            <h:inputText id="metal" styleClass="textfield metal" style="margin: 0px 15px 0px 15px;" value="#{orders.metal}"></h:inputText>
+            <h:commandButton styleClass="refreshbutton orderMetal" id="orderMetal"  style="font-size: 12px; padding: 5px 8px 5px 8px;" value="ЗАКАЗАТЬ" action="#{orders.orderMetal}"/>
+        </p>
+
+            <br/>
+
+        <p>
+            <h:outputText value="Полировка " />
+            <h:selectOneMenu id="polishQuality"
+                    styleClass="comboboxInTable polishQuality"
+                    style="margin: 0px 15px 0px 15px;"
+                    value="#{orders.orderPolish}">
+                <f:selectItem itemValue="высокое" itemLabel="высокое" />
+                <f:selectItem itemValue="среднее" itemLabel="среднее" />
+                <f:selectItem itemValue="низкое" itemLabel="низкое" />
+            </h:selectOneMenu>
+            <h:commandButton styleClass="refreshbutton orderPolish"  style="font-size: 12px; padding: 5px 8px 5px 8px;" value="ЗАКАЗАТЬ" action="#{orders.orderPolish}"/>
+        </p>
+
+            <br/>
+
+        <p>
+            <h:outputText value="Дополнительные опции" />
+        </p>
+            <p>
+                <h:outputText value="Гарда " />
+                <h:inputText id="guard" styleClass="textfield guard" style="margin: 0px 15px 0px 15px;" value="#{orders.guard}"></h:inputText>
+            </p>
+            <p>
+                <h:outputText value="Рукоять " />
+                <h:inputText id="handle" styleClass="textfield handle" style="margin: 0px 15px 0px 15px;" value="#{orders.handle}"></h:inputText>
+            </p>
+            <p>
+                <h:outputText value="Оплетка рукояти " />
+                <h:inputText id="braiding" styleClass="textfield braiding" style="margin: 0px 15px 0px 15px;" value="#{orders.braiding}"></h:inputText>
+            </p>
+            <p>
+                <h:outputText value="Гравировка " />
+                <h:inputText id="engraving" styleClass="textfield engraving" style="margin: 0px 15px 0px 15px;" value="#{orders.engraving}"></h:inputText>
+            </p>
+            <p>
+                <h:outputText value="Навершие " />
+                <h:inputText id="header" styleClass="textfield header" style="margin: 0px 15px 0px 15px;" value="#{orders.header}"></h:inputText>
+            </p>
+            <p>
+                <h:outputText value="Ножны " />
+                <h:inputText id="scabbard" styleClass="textfield scabbard" style=" margin: 0px 15px 0px 15px;" value="#{orders.scabbard}"></h:inputText>
+            </p>
+            <p>
+                <h:commandButton styleClass="refreshbutton orderAcces"  style="font-size: 12px; padding: 5px 8px 5px 8px;" value="ЗАКАЗАТЬ" action="#{orders.orderAcces}"/>
+            </p>
+
+            <br/>
+
+            <p>
+                <h:commandButton styleClass="refreshbutton orderTesting"  style="font-size: 12px; padding: 5px 8px 5px 8px;" value="ЗАКАЗАТЬ ИСПЫТАНИЯ" action="#{orders.orderTest}"/>
+            </p>
+
+        </h:form>
+
+    </div>
+
+    <p:dialog header="Ошибка" widgetVar="dlg" minHeight="40" visible="true" rendered="#{orders.showDialog}">
+        <h:outputText value="Введено неправильное количество металла." />
+    </p:dialog>
+</h:body>
+</html>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="forge3.1:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/forge3_1_war</output-path>
+    <root id="archive" name="forge3.1_war.war">
+      <element id="artifact" artifact-name="forge3.1:war exploded" />
+    </root>
+  </artifact>
+</component>

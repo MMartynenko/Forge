@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    #{orderServer.resetMsg()}
+    <title>Оформление заказа</title>
+</h:head>
+<h:body>
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <div id="rootID">
+        <h:form id="orderForm">
+            <div id="headerText">Оформление заказа</div>
+            <h:link value="На Главную" outcome="index" /><br/>
+            <p>
+                <table>
+                    <tr>
+                        <td><h:outputText value="Как к вам обращаться?   " /></td>
+                        <td><h:inputText id="name" styleClass="textfield name" value="#{orderServer.name}" required="true" requiredMessage="Вы не заполнили все поля!"></h:inputText> </td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="E-mail " /></td>
+                        <td><h:inputText id="mail" styleClass="textfield mail" value="#{orderServer.mail}" required="true" requiredMessage="Вы не заполнили все поля!"></h:inputText></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="Качество клинка " /></td>
+                        <td><h:selectOneMenu id="quality"
+                                styleClass="comboboxInTable quality"
+                                style= "margin: 5px;
+                                        width: 162px;
+                                        height: 26px;
+                                        border-radius: 2px;
+                                        border-width: 1px;
+                                        border-style: solid;
+                                        background-color: white"
+                                value="#{orderServer.quality}">
+                            <f:selectItem itemValue="Вариба" itemLabel="Вариба" />
+                            <f:selectItem itemValue="Мару" itemLabel="Мару" />
+                            <f:selectItem itemValue="Кобусэ" itemLabel="Кобусэ" />
+                            <f:selectItem itemValue="Хан-Санмаи-Авасэ" itemLabel="Хан-Санмаи-Авасэ" />
+                            <f:selectItem itemValue="Сихо-Дзумэ" itemLabel="Сихо-Дзумэ" />
+                        </h:selectOneMenu></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="Длина клинка "/></td>
+                        <td><h:inputText id="length" styleClass="textfield length" value="#{orderServer.length}" required="true" requiredMessage="Вы не заполнили все поля!"
+                                         validatorMessage="Вы ввели неподходящий размер клинка!">
+                            <f:validateDoubleRange minimum="5.0" maximum="120.0" for="length"/>></h:inputText></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="Гарда "/></td>
+                        <td><h:inputText id="guard" styleClass="textfield guard" value="#{orderServer.guard}"></h:inputText></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="Рукоять "/></td>
+                        <td><h:inputText id="handle" styleClass="textfield handle" value="#{orderServer.handle}"></h:inputText></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="Оплётка рукояти "/></td>
+                        <td><h:inputText id="braiding" styleClass="textfield braiding" value="#{orderServer.braiding}"></h:inputText></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="Гравировка " /></td>
+                        <td><h:inputText id="engraving" styleClass="textfield engraving" value="#{orderServer.engraving}"></h:inputText></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="Навершие " /></td>
+                        <td><h:inputText id="header" styleClass="textfield header" value="#{orderServer.header}"></h:inputText></td>
+                    </tr>
+
+                    <tr>
+                        <td><h:outputText value="Ножны " /></td>
+                        <td><h:inputText id="scabbard" styleClass="textfield scabbard" value="#{orderServer.scabbard}"></h:inputText></td>
+                    </tr>
+                </table>
+                <br/>
+                <h:commandButton styleClass="refreshbutton"
+                                 style="background-color: rgba(51, 102, 0, 0.61);
+                                 background-image: -webkit-linear-gradient(top, rgba(54, 120, 3, 0.61), rgba(51, 102, 0, 0.61));
+                                 border:none;
+                                 color: #e6e6e6; "
+                                 value="ОФОРМИТЬ ЗАКАЗ" action="#{orderServer.formOrder}"/>
+
+
+
+            </p>
+
+        </h:form>
+
+    </div>
+
+    <p:dialog widgetVar="dlg" minHeight="40" visible="true" rendered="#{orderServer.showMsg}">
+        <h:outputText value="Ваш заказ принят." />
+    </p:dialog>
+</h:body>
+</html>
+

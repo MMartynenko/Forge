@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Главная</title>
+
+</h:head>
+<h:body>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <div id="rootID">
+        <div id="headerText">Кузница самурайских мечей</div> <br/>
+        Добро пожаловать в кузницу! Вы можете: <br/>
+        <h:link value="оформить заказ" outcome="new_order" /><br/>
+        <h:link value="посмотреть сделанные заказы" outcome="check_order" /><br/>
+        <br/>
+        <h:link value="посмотреть заказы на меч" outcome="orders" /><br/>
+        <h:link value="посмотреть заказы на металл" outcome="steelworker" /><br/>
+        <h:link value="посмотреть заказы на полировку" outcome="polisher" /><br/>
+        <h:link value="посмотреть заказы на испытания" outcome="tester" /><br/>
+        <h:link value="посмотреть заказы на доп. опции" outcome="accessories" /><br/>
+
+</div>
+</h:body>
+</html>

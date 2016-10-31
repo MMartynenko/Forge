@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Заказы на металл</title>
+
+</h:head>
+<h:body>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <div id="rootID">
+        <h:form id="orderForm">
+            <div id="headerText">Заказы на металл</div>
+            <h:link value="На Главную" outcome="index" /><br/>
+
+            <p>
+
+                <h:dataTable styleClass="orderstable" value="#{steelOrders.orders}" var="steelInfo">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        #{steelInfo.ID}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Масса</f:facet>
+                        #{steelInfo.mass}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Статус</f:facet>
+                        <h:selectOneMenu styleClass="comboboxInTable status" value="#{steelInfo.status}">
+                            <f:selectItem itemValue="В очереди" itemLabel="В очереди" />
+                            <f:selectItem itemValue="В процессе" itemLabel="В процессе" />
+                            <f:selectItem itemValue="Готов" itemLabel="Готов" />
+                        </h:selectOneMenu>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Номер заказа</f:facet>
+                        #{steelInfo.orderID}
+                    </h:column>
+                </h:dataTable>
+                <br/>
+                <h:commandButton styleClass="refreshbutton refresh" value="ОБНОВИТЬ" action="#{steelOrders.refresh}"/>
+                <h:commandButton styleClass="refreshbutton save" style="margin-left: 111px;" value="СОХРАНИТЬ" action="#{steelOrders.save}"/>
+            </p>
+        </h:form>
+
+
+    </div>
+</h:body>
+</html>
